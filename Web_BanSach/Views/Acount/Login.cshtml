@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutSach.cshtml";
+    @*<link href="~/Content/Css/Login.css" rel="stylesheet" />*@
+}
+
+<div class="container">
+    <div class="login-container mt-4" style="width: 400px; margin: auto">
+        <div class="card shadow-lg p-3 " style="">
+            <h3 class="card-title text-center fw-bold text-primary mb-4">Đăng nhập</h3>
+
+            @*Sử dụng Using HTML.BeginForm có 4 obj cần chuyền vào, và bỏ form đăng nhập chỉ lấy div *@
+            @using (Html.BeginForm("XuLyFormDN", "Acount", new { duongdan = ViewBag.Url }, FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="loginEmail" required>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Mật khẩu</label>
+                    <input type="password" name="password" class="form-control" id="loginPassword" required>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" style="margin: 0;" class="btn btn-primary w-100 mb-3">ĐĂNG NHẬP</button>
+                    <p class="text-center">
+                        Chưa có tài khoản? <a href="@Url.Action("Register","Acount")" class="text-decoration-none fw-bold">Đăng ký ngay</a>
+                    </p>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+

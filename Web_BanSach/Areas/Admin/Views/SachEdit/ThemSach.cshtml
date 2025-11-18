@@ -1,0 +1,107 @@
+﻿@model Web_BanSach.Models.Saches
+
+@{
+    ViewBag.Title = "ThemSach";
+}
+
+@using (Html.BeginForm("XuLySach", "SachEdit", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal mauchu padding">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<div class="form-group padding">
+    Tên sách
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.TENSACH, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.TENSACH, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+    <div class="form-group padding">
+        Giá bán
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GIABAN, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GIABAN, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group padding">
+        Nội dung
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NOIDUNG, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NOIDUNG, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group padding">
+        Ảnh bìa
+            <div class="col-md-10">
+                <input type="file" name="AnhBiaUpload" accept="Image/*" />
+            </div>
+        </div>
+
+    <div class="form-group padding">
+        Năm xuất bản
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NAMXUATBAN, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NAMXUATBAN, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group padding">
+        Loại sách
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.MALOAI, (SelectList)ViewBag.SelectLoai, "Xin mời nhập loại", new { @class = "form-select", required = "required" })
+            @Html.ValidationMessageFor(m => m.MALOAI, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group padding">
+        Nhà xuất bản
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.MANXB, (SelectList)ViewBag.SelectNXB, "Xin mời nhập loại", new { @class = "form-select", required = "required" })
+            @Html.ValidationMessageFor(m => m.MANXB, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group padding">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn-save" />
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+}
+
+
+<style>
+
+    .btn-save {
+        display: inline-block;
+        background-color: #4ade80; /* xanh lá nhạt */
+        color: #0f172a;
+        padding: 10px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.25s;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        margin-right: 15px;
+    }
+
+        .btn-save:hover {
+            background-color: #16a34a; /* xanh lá đậu */
+            color: white;
+        }
+
+    .mauchu {
+        color: white;
+    }
+
+    .padding{
+        padding: 4px 4px 4px 4px;
+    }
+</style>

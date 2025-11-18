@@ -1,0 +1,78 @@
+﻿.filter-panel {
+    width: 280px;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+}
+
+    .filter-panel h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+.filter-section {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #1e293b;
+    padding-bottom: 15px;
+}
+
+    .filter-section:last-child {
+        border-bottom: none;
+    }
+
+    .filter-section label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .filter-section input[type="text"],
+    .filter-section select {
+        width: 100%;
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 6px;
+        padding: 8px;
+        color: #f1f5f9;
+        outline: none;
+    }
+
+        .filter-section input[type="text"]::placeholder {
+            color: #94a3b8;
+        }
+
+.filter-options label {
+    display: block;
+    margin: 6px 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.filter-options input[type="radio"] {
+    accent-color: #3b82f6;
+    margin-right: 6px;
+}
+
+.content-wrapper {
+    display: flex; /* đặt filter và sách nằm ngang */
+    align-items: flex-start; /* căn đỉnh cùng hàng */
+    justify-content: flex-start;
+    gap: 30px; /* khoảng cách giữa 2 phần */
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+}
+
+/* Giữ filter cố định bên trái, không chiếm quá nhiều */
+.filter-panel {
+    width: 260px;
+    background-color: #0f172a;
+    padding: 20px;
+    border-radius: 10px;
+    color: #e2e8f0;
+    flex-shrink: 0;
+}
+

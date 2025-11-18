@@ -1,0 +1,71 @@
+﻿@model List<BANGSACH>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<section class="book-section">
+    <h2 style="color:aquamarine ">Sách mới cập nhật</h2>
+    <div class="book-grid">
+
+        @foreach (var item in Model)
+        {
+
+            <div class="book-card">
+                <a href="@Url.Action("ChiTietSach", "Sach", new { masach = @item.MASACH })">
+                    <div class="book-info">
+                        <span class="book-tag">@item.LOAISACH.TENLOAI</span>
+                    </div>
+                    <img alt="@item.TENSACH" src="~/Content/HinhAnh/@item.ANHBIA">
+                    <div class="book-info">
+                        <div class="book-title">@item.TENSACH</div>
+                        <div class="book-price">@String.Format("{0:#,##0}", @item.GIABAN) VNĐ</div>
+                        <span class="book-author">@item.NHAXUATBAN.TENNXB</span>
+
+                    </div>
+                </a>
+            </div>
+        }
+        <!-- Thêm các card khác tương tự -->
+    </div>
+    <div class="pagination">
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <a href="@Url.Action("Index", new { page = i })"
+               class="@(i == ViewBag.Page ? "active-page" : "")">
+                @i
+            </a>
+        }
+    </div>
+</section>
+
+
+
+<style>
+    .pagination {
+        width: 100%; /* chiếm hết chiều ngang */
+        display: flex;
+        justify-content: center; /* căn giữa ngang */
+        align-items: center; /* căn giữa dọc nếu cần */
+        gap: 10px;
+        margin: 20px 0;
+    }
+
+        .pagination a {
+            color: white;
+            padding: 8px 12px;
+            border: 1px solid aquamarine;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+            .pagination a.active-page {
+                background-color: aquamarine;
+                color: #0f172a;
+                font-weight: bold;
+            }
+</style>
+
+
+

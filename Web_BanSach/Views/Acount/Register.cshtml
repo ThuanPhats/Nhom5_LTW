@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutSach.cshtml";
+}
+
+<div class="container">
+    <div class=" login-container mt-4" style="width:400px; margin:auto">
+        <div class="card shadow-lg p-3">
+            <h3 class="card-title text-center fw-bold text-primary mb-4">Đăng ký</h3>
+            @if (ViewBag.Loi != null)
+            {
+                <p style="color:red">@ViewBag.Loi</p>
+            }
+            @using (Html.BeginForm("Register", "Acount", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label for="RegisterTenKH" class="form-label">Tên khách hàng</label>
+                    <input type="text" name="TENKHACHHANG" class="form-control"  required>
+                </div>
+                <div class="mb-3">
+                    <label for="RegisterEmail" class="form-label">Email</label>
+                    <input type="email" name="EMAIL" class="form-control"  required>
+                </div>
+                <div class="mb-3">
+                    <label for="RegisterPassword" class="form-label">Mật khẩu</label>
+                    <input type="password" name="MATKHAU" class="form-control"  required>
+                </div>
+                <div class="mb-3">
+                    <label for="RegisterSDT" class="form-label">Số điện thoại</label>
+                    <input type="number" name="SDT" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Địa chỉ</label>
+                    <input type="text" name="DIACHI" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" style="margin: 0;" class="btn btn-primary w-100 mb-3">ĐĂNG KÝ</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

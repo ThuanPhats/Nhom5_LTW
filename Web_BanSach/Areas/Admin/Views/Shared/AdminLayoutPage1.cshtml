@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>📚 Thư viện sách</title>
+    <link href="~/Content/Bootstrap/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/Css/Style.css" rel="stylesheet" />
+    <link href="~/Content/Css/DanhMuc.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="utf-8" />
+</head>
+<body>
+    @*header nav*@
+    <header class="bg-background\/75 backdrop-blur border-b border-gray-200 dark\:border-gray-800 -mb-px sticky top-0 z-50">
+        <div class="flex items-center justify-between gap-3 h-[--header-height] mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+            @*logo*@
+            <div class="lg\:flex-1 flex items-center gap-1\.5 register-container">
+                <a aria-current="page" href="@Url.Action("Index", "Sach", new {area ="Admin"})" class="router-link-active router-link-exact-active flex items-end gap-2 font-bold text-xl text-gray-900 dark:text-white" aria-label="Nuxt UI">
+                    <h1 class="flex items-center gap-2 w-auto h-auto" title="Thư viện sách online miễn phí">
+                        <span class="text-base lg:text-lg font-bold">Story<span style="color:#00ff21">Book</span></span>
+                    </h1>
+                </a>
+
+            </div>
+            @*Menu*@
+            <ul class=" flex items-center gap-x-8 lg:flex">
+                <li class="relative">
+                    <a class="text-sm\/6 font-semibold flex items-center gap-1 menu-item" href="@Url.Action("Index", "Sach", new {area ="Admin"})" as="button" type="button" exact="false" exactquery="false" exacthash="false">
+                        <!--[-->
+                        Trang chủ
+                        <!--[-->
+                    </a>
+
+                </li>
+                <li class="relative">
+                    <a class="text-sm\/6 font-semibold flex items-center gap-1 menu-item" href="@Url.Action("Index","LienHe",new {area ="Admin"})" as="button" type="button" exact="false" exactquery="false" exacthash="false">
+                        <!--[-->
+                        Liên Hệ
+                        <!--[-->
+                    </a>
+
+                </li>
+                <li class="dropdown">
+                    <a class="text-sm\/6 font-semibold flex items-center gap-1 menu-item " href="#" as="button" type="button" exact="false" exactquery="false" exacthash="false">
+                        <!--[-->
+                        ADMIN
+                        <!--[-->
+                    </a>
+
+                    <ul class="dropdown-menu ">
+                        <li><a href="@Url.Action("Index","LoaiSach","Admin")">Thể loại</a></li>
+                        <li><a href="@Url.Action("Index","NhaXuatBan","Admin")">Nhà xuất bản</a></li>
+                        <li><a href="@Url.Action("Index","SachEdit","Admin")">Sách</a></li>
+                    </ul>
+                </li>
+
+                <style>
+                    /* item cha */
+                    .dropdown {
+                        position: relative;
+                        list-style: none;
+                    }
+
+                    /* menu con */
+                    .dropdown-menu {
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        background-color: #0f172a;
+                        padding: 8px 0;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                        width: 160px;
+                        display: none; /* ẨN mặc định */
+                    }
+
+                        .dropdown-menu li {
+                            list-style: none;
+                        }
+
+                        .dropdown-menu a {
+                            display: block;
+                            padding: 8px 16px;
+                            color: white;
+                            text-decoration: none;
+                        }
+
+                            .dropdown-menu a:hover {
+                                background: #007bff;
+                            }
+
+                    /* Hover mở menu */
+                    .dropdown:hover .dropdown-menu {
+                        display: block;
+                    }
+                </style>
+
+            </ul>
+            @*mennu đăng nhập*@
+            <div class="flex items-center justify-end lg\:flex-1 gap-1\.5 ">
+                <div class=" lg:flex items-center gap-1\.5">
+                    <button class="srch-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    @if (Session["TEN"] != null)
+                    {
+                        <span class="btn" style="color:#36eb21">Xin chào, @Session["TEN"]</span>
+                        <a style="color:aliceblue" href="@Url.Action("DangXuat", "Acount",new { area = "" })" class="btn-login">Đăng xuất</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login","Acount")" style="background-color:darkblue" class="btn-login"> Đăng nhập</a>
+                        <a href="@Url.Action("Register","Acount")" class="btn-login">Đăng ký</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+    <Main>
+        <div class="content-wrapper">
+            @Html.Action("_DanhMuc", "DanhMuc", new { area = "Admin" })
+            @RenderBody()
+        </div>
+    </Main>
+    @*</footer>-->*@
+    <footer id="footer" class=" text-center">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div style="color: #ffffff" class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>StoryBook</h5>
+
+                    <ul style="color:#ffffff" class="list-unstyled mb-0">
+                        <li>
+                            <p>Trang web bán sách</p>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div style="color: #ffffff" class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-0">Giới thiệu</h5>
+
+                    <ul style="color: #ffffff" class="list-unstyled">
+                        <li>
+                            <a href="#" class="text">thành viên</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="">Tuấn Anh</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="">La Thuật Phát</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="">Hỗ trợ</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-body">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-body">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-body">Link 3</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-body">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class=" mb-0">Liên Hệ</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-body">Link 1</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-body">Link 2</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-body">Link 3</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2025 Copyright:
+            <a class="text-body" href="https://www.facebook.com/TuanAnh15092001/">Github</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+</body>
+</html>

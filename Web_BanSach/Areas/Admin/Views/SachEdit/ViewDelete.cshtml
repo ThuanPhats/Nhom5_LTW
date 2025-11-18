@@ -1,0 +1,104 @@
+﻿@model Web_BanSach.BANGSACH
+
+@{
+    ViewBag.Title = "ViewDelete";
+}
+
+<div class=" mauchu">
+<h5 style="color:red;">Bạn có muốn xoá sách @Model.TENSACH này không?</h5>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENSACH)
+        </dd>
+
+        <dt>
+            Giá bán
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIABAN)
+        </dd>
+
+        <dt>
+            Nội dung
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOIDUNG)
+        </dd>
+
+        <dt>
+            Ảnh bìa
+        </dt>
+
+        <dd>
+            <img src="~/Content/HinhAnh/@Model.ANHBIA" style="height:15%;width:15%" alt="#" />
+        </dd>
+
+        <dt>
+            Năm xuất bản
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAMXUATBAN)
+        </dd>
+
+        <dt>
+            Loại sách
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MALOAI)
+        </dd>
+
+        <dt>
+            Nhà xuất bản
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MANXB)
+        </dd>
+
+    </dl>
+
+
+    <form method="post" action="@Url.Action("DeleteSubmit", "SachEdit", new { id = Model.MASACH})">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn-save px-4">Xóa</button>
+        @Html.ActionLink("Back to List", "Index")
+     </form>
+</div>
+
+<style>
+
+    .btn-save {
+        display: inline-block;
+        background-color: #4ade80; /* xanh lá nhạt */
+        color: #0f172a;
+        padding: 10px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.25s;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        margin-right: 15px;
+    }
+
+        .btn-save:hover {
+            background-color: #16a34a; /* xanh lá đậu */
+            color: white;
+        }
+
+    .mauchu {
+        color: white;
+    }
+    dt {
+        color: green;
+    }
+</style>

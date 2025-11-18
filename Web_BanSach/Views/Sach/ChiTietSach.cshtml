@@ -1,0 +1,129 @@
+﻿@model BANGSACH
+@{
+    ViewBag.Title = "ChiTietSach";
+    Layout = "~/Views/Shared/_LayoutSach.cshtml";
+    var lienquan = (List<BANGSACH>)ViewBag.LQ;
+    var nxb = (List<BANGSACH>)ViewBag.NXB;
+    <link href="~/Content/Css/chitietsach.css" rel="stylesheet" />
+}
+
+<section class="products">
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Hình ảnh sản phẩm -->
+            <div class="col-md-5">
+                <div class="card shadow-sm border-0">
+                    <img src="~/Content/HinhAnh/@Model.ANHBIA" alt="@Model.TENSACH">
+                </div>
+            </div>
+
+            <!-- Thông tin sản phẩm -->
+            <div class="col-md-7">
+                <h2 class="mb-3 text-primary">@Model.TENSACH</h2>
+                <h4 class="text-danger fw-bold">@String.Format("{0:#,##0}", @Model.GIABAN) VNĐ</h4>
+
+                <p class="mt-3" style="line-height: 1.8; font-size: 1.1rem; text-align: justify; color:white">
+                    @Model.NOIDUNG
+                </p>
+
+
+                <div class="mt-4 d-flex align-items-center">
+                    @using (Html.BeginForm("ThemMatHang", "DatHang", FormMethod.Post))
+                    {
+                        <input type="hidden" name="masach" value="@Model.MASACH" />
+                        <button type="submit" class="btn btn-success btn-lg px-4 me-2">
+                            <i class="bi bi-cart-plus"></i> Thêm vào giỏ
+                        </button>
+                    }
+                    <a href="@Url.Action("Index","Sach")" class="btn btn-outline-secondary btn-lg px-4">
+                        <i class="bi bi-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Gợi ý sản phẩm liên quan -->
+        <div class="related-products mt-5">
+            <h4 class="mb-4 text-light">Sản phẩm liên quan</h4>
+
+            @if (ViewBag.Messagelq != null)
+            {
+                <div class="alert alert-info">@ViewBag.Messagelq</div>
+            }
+            <div class="row g-4">
+                @foreach (var item in lienquan)
+                {
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="@Url.Action("ChiTietSach", "Sach", new { masach = @item.MASACH })">
+                            <article class="product-card card h-100 border-0 bg-transparent text-center">
+                                <div class="thumb position-relative overflow-hidden rounded">
+                                    <img src="~/Content/HinhAnh/@item.ANHBIA"
+                                         alt="@item.TENSACH"
+                                         class="card-img-top img-fluid"
+                                         style="object-fit: cover; height: 250px;" />
+                                </div>
+
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <h5 class="card-title text-truncate text-light mb-2">@item.TENSACH</h5>
+
+                                    <p class="price mb-3">
+                                        <span class="text-warning fw-bold">
+                                            @String.Format("{0:#,##0}", item.GIABAN) VNĐ
+                                        </span>
+                                    </p>
+
+                                    <button class="btn btn-outline-light mt-auto">
+                                        <i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
+                                    </button>
+                                </div>
+                            </article>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Sản phẩm cùng nhà sản xuất -->
+        <div class="related-products mt-5">
+            <h4 class="mb-4 text-light">Cùng nhà xuất bản</h4>
+
+            @if (ViewBag.Messagenxb != null)
+            {
+                <div class="alert alert-info">@ViewBag.Messagenxb</div>
+            }
+            <div class="row g-4">
+                @foreach (var item in nxb)
+                {
+
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="@Url.Action("ChiTietSach", "Sach", new { masach = @item.MASACH })">
+                            <article class="product-card card h-100 border-0 bg-transparent text-center">
+                                <div class="thumb position-relative overflow-hidden rounded">
+                                    <img src="~/Content/HinhAnh/@item.ANHBIA"
+                                         alt="@item.TENSACH"
+                                         class="card-img-top img-fluid"
+                                         style="object-fit: cover; height: 250px;" />
+                                </div>
+
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <h5 class="card-title text-truncate text-light mb-2">@item.TENSACH</h5>
+
+                                    <p class="price mb-3">
+                                        <span class="text-warning fw-bold">
+                                            @String.Format("{0:#,##0}", item.GIABAN) VNĐ
+                                        </span>
+                                    </p>
+
+                                    <button class="btn btn-outline-light mt-auto">
+                                        <i class="bi bi-cart-plus me-1"></i> Thêm vào giỏ
+                                    </button>
+                                </div>
+                            </article>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

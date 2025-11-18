@@ -1,0 +1,33 @@
+﻿@model List<LOAISACH>
+<form action="Sach/TimKiemSPNangCao" method="get" class="row g-3">
+    <div class="filter-section">
+        <label for="kw" class="form-label">Từ khóa</label>
+        <input type="text" class="form-control" id="kw" name="kw" placeholder="Từ khóa...">
+    </div>
+
+    <div class="filter-section">
+        <label for="chude" class="form-label" >Theo thể loại</label>
+        <select id="chude" name="chude">
+            <option value="" selected>-- Chọn tất cả --</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.MALOAI">@item.TENLOAI</option>
+            }
+        </select>
+    </div>
+
+    <div class="filter-section">
+        <label>Theo giá tiền</label>
+        <div class="filter-options">
+            <label for="g1"><input type="checkbox" value="0-20000" id="g1" name="gia"> 0 - 20.000₫</label>
+            <label for="g2"><input type="checkbox" value="21000-50000" id="g2" name="gia"> 20.000₫ - 50.000₫</label>
+            <label for="g3"><input type="checkbox" value="51000-100000" id="g3" name="gia"> 50.000₫ - 100.000₫</label>
+            <label for="g4"><input type="checkbox" value=">100000" id="g4" name="gia"> > 100.000₫</label>
+        </div>
+    </div>
+
+    <div class="filter-section">
+        <button type="submit" class="btn btn-primary px-4">Tìm kiếm</button>
+        <button type="reset" class="btn btn btn-danger">Xóa</button>
+    </div>
+</form>

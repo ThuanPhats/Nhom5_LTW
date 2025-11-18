@@ -1,0 +1,14 @@
+﻿<div class="filter-panel">
+    <div class="filter-section">
+        <h3>Theo Thể Loại</h3>
+        @Html.Action("_DanhMucTL", "DanhMuc", new { area = "Admin" })
+    </div>
+
+    <div class="filter-section">
+        <h3>Theo nhà xuất bản</h3>
+        @Html.Action("_DanhMucNXB", "DanhMuc", new { area = "Admin" })
+    </div>
+    <h3>Tìm kiếm</h3>
+    @Html.Action("_DanhMucTimKiem", "DanhMuc", new { area = "Admin" })
+
+</div>

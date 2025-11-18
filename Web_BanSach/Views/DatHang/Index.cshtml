@@ -1,0 +1,113 @@
+﻿@model Web_BanSach.Models.GioHangViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSach.cshtml";
+}
+@Html.AntiForgeryToken()
+
+<!-- Cart Start -->
+<div class="container my-4">
+    <div class="row g-4">
+        <!-- CART TABLE -->
+        <h3>Thông tin giỏ hàng đã chọn</h3>
+        <div class="col-lg-9">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr class="text-center">
+                            <th class="text-start">Sản phẩm</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-body">
+                        @foreach (var item in Model.Items)
+                        {
+                            var price = item.sach?.GIABAN ?? 0;
+                            var maSach = item.sach?.MASACH ?? 0;
+                            <tr data-price="@price" data-masach="@maSach">
+                                <td class="text-start">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <img src="@(item.sach?.ANHBIA ?? Url.Content("~/images/no-image.png"))" alt="@(item.sach?.TENSACH ?? "Unknown")" style="width: 60px; height: 60px;" class="rounded">
+                                        <div>@(item.sach?.TENSACH ?? "Unknown sản phẩm")</div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    VNĐ <span class="unit">@price</span>
+                                </td>
+                                <td class="text-center">
+                                    <!-- Update quantity form (POST to CapNhatMatHang) -->
+                                    @using (Html.BeginForm("CapNhatMatHang", "DatHang", FormMethod.Post, new { @class = "update-qty-form d-inline" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="masach" value="@maSach" />
+                                        <div class="qty-box d-inline-flex align-items-center">
+                                            <button type="button" class="qty-btn minus" onclick="changeQty(this,-1)">−</button>
+                                            <input type="number" name="soluong" class="qty-input text-center" value="@item.soluong" min="1" style="width:60px" />
+                                            <button type="button" class="qty-btn plus" onclick="changeQty(this,1)">+</button>
+                                            <button type="submit" class="btn btn-sm btn-primary ms-2">Cập nhật</button>
+                                        </div>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    VNĐ <span class="row-total">@item.thanhtien</span>
+                                </td>
+                                <td class="text-center">
+                                    <!-- Remove form (calls XoaMatHang) -->
+                                    @using (Html.BeginForm("XoaMatHang", "DatHang", FormMethod.Get, new { @class = "remove-form d-inline" }))
+                                    {
+                                        <input type="hidden" name="masach" value="@maSach" />
+                                        <button type="submit" class="btn btn-danger btn-sm btn-remove">&times;</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- COUPON + SUMMARY -->
+        <div class="col-lg-3">
+            <div class="border rounded">
+                <div class="summary-title"><h5 class="m-0 fw-bold">Thông tin đơn hàng</h5></div>
+                <div class="p-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Tổng cộng</span><strong>VNĐ<span id="subtotal">@Model.TongTien</span></strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Phí vận chuyển</span><strong>VNĐ<span id="shipping">10000</span></strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2 d-none" id="discount-row">
+                        <span>Giảm giá</span><strong>−VNĐ<span id="discount">0</span></strong>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <strong>Tổng thành tiền</strong><strong>VNĐ<span id="grand">@(Model.TongTien + 10000)</span></strong>
+                    </div>
+                    @using (Html.BeginForm("ThanhCong", "DatHang", FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-success btn-lg px-4 me-2">
+                            <i class="bi bi-cart-plus"></i> Thêm vào giỏ
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional inline script for plus/minus buttons to change the input value before submit -->
+<script>
+    function changeQty(btn, delta) {
+        var input = btn.parentElement.querySelector('.qty-input');
+        if (!input) return;
+        var val = parseInt(input.value || "0", 10);
+        val = Math.max(1, val + delta);
+        input.value = val;
+    }
+</script>
+
+<!-- Cart End -->

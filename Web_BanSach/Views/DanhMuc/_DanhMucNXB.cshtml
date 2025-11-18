@@ -1,0 +1,42 @@
+﻿@model List<NHAXUATBAN>
+
+<style>
+    .category-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 250px;
+        overflow: hidden;
+    }
+
+        .category-list li {
+            /* bỏ border */
+        }
+
+        .category-list a {
+            display: block;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+            .category-list a:hover {
+                background-color: #007bff;
+                color: white;
+                transform: translateX(5px);
+            }
+</style>
+
+<ul class="category-list ">
+    <li><a href="@Url.Action("Index","Sach")">Tất cả</a></li>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="@Url.Action("LocSP", "Sach", new { id = item.MANXB, type = 2 })">
+                @item.TENNXB
+            </a>
+        </li>
+    }
+</ul>
+

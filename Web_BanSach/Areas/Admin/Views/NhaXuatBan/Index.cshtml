@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Web_BanSach.NHAXUATBAN>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    table {
+        background-color: #0f172a !important;
+        color: white !important;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        background-color: #0f172a !important;
+        color: #38bdf8 !important;
+        border-bottom: 1px solid #334155;
+        border-color: #334155 !important;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #0f172a !important;
+        color: red !important;
+        font-weight: 600;
+    }
+
+    /* Button thêm sách */
+    .btn-add {
+        display: inline-block;
+        background-color: #4ade80; /* xanh lá nhạt */
+        color: #0f172a;
+        padding: 5px 10px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.25s;
+        margin-bottom: 15px;
+    }
+
+        .btn-add:hover {
+            background-color: #16a34a; /* xanh lá đậu */
+            color: white;
+        }
+
+    img {
+        border-radius: 6px;
+        object-fit: cover;
+    }
+</style>
+
+<section style="width:100%">
+    <div class="btn-add">
+        @Html.ActionLink("Thêm NXB", "ThemNXB", new { area = "Admin" })
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                Mã NXB
+            </th>
+            <th>
+                Tên NXB
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MANXB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENNXB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIACHI)
+                </td>
+                <td>
+                    @Html.ActionLink("Chỉnh sửa", "ViewEdit", new { nxb_id = item.MANXB }) |
+                    @Html.ActionLink("Xoá", "ViewDelete", new { nxb_id = item.MANXB })
+                </td>
+            </tr>
+        }
+
+    </table>
+</section>

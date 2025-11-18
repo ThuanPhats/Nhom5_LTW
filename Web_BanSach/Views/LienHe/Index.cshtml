@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSach.cshtml";
+}
+
+<style>
+
+.style {
+background-color: #0f172a; box-shadow: 0 0 10px rgba(0, 255, 136, 0.6), 0 0 20px rgba(0, 255, 136, 0.3); color: aliceblue; text-align: center;
+}
+</style>
+
+<div class="card book-section style">
+    <div class="card-body">
+     
+        <h5>
+            @ViewBag.Message
+        </h5>
+        @foreach (var item in ViewBag.Nhom5)
+        {
+            <ul>
+                <li>
+                    @item
+                </li>
+            </ul>
+        }
+    </div>
+</div>

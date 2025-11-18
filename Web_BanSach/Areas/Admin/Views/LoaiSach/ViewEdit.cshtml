@@ -1,0 +1,65 @@
+﻿@model Web_BanSach.LOAISACH
+
+@{
+    ViewBag.Title = "ViewEdit";
+}
+
+@using (Html.BeginForm("EditSubmit", "LoaiSach", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal mauchu">
+        <h5>Sửa Loại sách @Model.TENLOAI </h5>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.MALOAI)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TENLOAI, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TENLOAI, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TENLOAI, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn-save" />
+                @Html.ActionLink("Back to List", "Index", new { area = "Admin" })
+            </div>
+        </div>
+    </div>
+}
+<style>
+
+    .btn-save {
+        display: inline-block;
+        background-color: #4ade80; /* xanh lá nhạt */
+        color: #0f172a;
+        padding: 10px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.25s;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        margin-right: 15px;
+    }
+
+        .btn-save:hover {
+            background-color: #16a34a; /* xanh lá đậu */
+            color: white;
+        }
+
+    .mauchu {
+        color: white;
+    }
+
+    .padding {
+        padding: 4px 4px 4px 4px;
+    }
+</style>

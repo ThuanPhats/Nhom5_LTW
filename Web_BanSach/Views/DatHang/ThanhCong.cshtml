@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "ThanhCong";
+    Layout = "~/Views/Shared/_LayoutSach.cshtml";
+}
+
+<!-- Thông báo thanh toán đơn hàng -->
+
+<div class="success-card">
+    <div class="success-icon">
+        🎀
+    </div>
+    <h3 class="fw-bold text-success mb-2">Thanh toán thành công!</h3>
+    <p class="text-muted mb-4">
+        Cảm ơn bạn đã mua hàng. Đơn hàng của bạn đã được xác nhận và sẽ sớm được xử lý.
+    </p>
+    <div class="mt-4">
+        <a href="@Url.Action("Index","Sach")" class="btn btn-main me-2">Quay lại trang chủ</a>
+        <a href="@Url.Action("Index","DatHang")" class="btn btn-outline-secondary">Xem đơn hàng</a>
+    </div>
+</div>
+
+<!-- Thông báo thanh toán đơn hàng -->

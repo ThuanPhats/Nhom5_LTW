@@ -1,0 +1,107 @@
+﻿@model Web_BanSach.BANGSACH
+
+@{
+    ViewBag.Title = "ViewEdit";
+}
+
+@using (Html.BeginForm("SuaSach", "SachEdit", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group mauchu">
+            Tên sách
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TENSACH, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TENSACH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mauchu" style="padding: 4px 4px 4px 4px">
+            Giá bán
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GIABAN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GIABAN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mauchu" style="padding: 4px 4px 4px 4px">
+            Nội dung
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NOIDUNG, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NOIDUNG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mauchu" style="padding: 4px 4px 4px 4px">
+            Ảnh bìa
+            <div class="col-md-10">
+                <input type="file" name="AnhBiaUpload" accept="Image/*" />
+
+            </div>
+        </div>
+
+
+        <div class="form-group mauchu" style="padding: 4px 4px 4px 4px">
+            Năm xuất bản
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NAMXUATBAN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAMXUATBAN, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mauchu" style="padding: 4px 4px 4px 4px">
+            Loại Sách
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.MALOAI, (SelectList)ViewBag.SelectLoai, "Xin mời nhập loại", new { @class = "form-select", required = "required" })
+                @Html.ValidationMessageFor(m => m.MALOAI, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mauchu" style="padding: 4px 4px 4px 4px">
+            Nhà xuất bảnsaaaaa
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.MANXB, (SelectList)ViewBag.SelectNXB, "Xin mời nhập loại", new { @class = "form-select", required = "required" })
+                @Html.ValidationMessageFor(m => m.MANXB, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mauchu" style="padding: 4px 4px 4px 4px">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn-save" />
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+}
+<style>
+
+    .btn-save {
+        display: inline-block;
+        background-color: #4ade80; /* xanh lá nhạt */
+        color: #0f172a;
+        padding: 10px 18px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.25s;
+        margin-bottom: 15px;
+        margin-top: 15px;
+        margin-right: 15px;
+    }
+
+        .btn-save:hover {
+            background-color: #16a34a; /* xanh lá đậu */
+            color: white;
+        }
+
+    .mauchu{
+        color:white;
+    }
+
+
+</style>
+
+
