@@ -90,7 +90,7 @@
                     @using (Html.BeginForm("ThanhCong", "DatHang", FormMethod.Post))
                     {
                         <button type="submit" class="btn btn-success btn-lg px-4 me-2">
-                            <i class="bi bi-cart-plus"></i> Thêm vào giỏ
+                            <i class="bi bi-cart-plus"></i> Thanh toán
                         </button>
                     }
                 </div>
@@ -110,4 +110,81 @@
     }
 </script>
 
+<style>
+    /* Tiêu đề giỏ hàng */
+    h3 {
+        color: white !important;
+    }
+
+    /* Bảng giỏ hàng */
+    .table {
+        background-color: #0f172a !important; /* cùng màu nền website */
+        color: white !important;
+    }
+
+        .table th {
+            color: #0f172a !important;
+            border-bottom: 1px solid #334155 !important;
+        }
+
+        .table td {
+            color: #0f172a !important;
+        }
+
+    /* Ô nhập số lượng */
+    .qty-input {
+        background-color: #1e293b;
+        color: white;
+        border: 1px solid #475569;
+    }
+
+    /* Nút + và - */
+    .qty-btn {
+        background-color: #475569;
+        color: white;
+        border: none;
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+    }
+
+    /* Xóa */
+    .btn-remove {
+        background-color: #dc2626 !important;
+        color: white !important;
+    }
+
+    /* Khung Thông tin đơn hàng */
+    .summary-title h5,
+    #subtotal,
+    #shipping,
+    #discount,
+    #grand,
+    .col-lg-3 span,
+    .col-lg-3 strong {
+        color: white !important;
+    }
+
+    .col-lg-3 .border {
+        background-color: #0f172a !important;
+        border: 1px solid #334155 !important;
+    }
+
+    /* Căn giữa nút Thanh toán */
+    .col-lg-3 form {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-success {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .summary-title h5 {
+        text-align: center !important;
+        width: 100%;
+        display: block;
+    }
+</style>
 <!-- Cart End -->

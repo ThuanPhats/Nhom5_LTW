@@ -1,23 +1,90 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "ThanhCong";
     Layout = "~/Views/Shared/_LayoutSach.cshtml";
 }
 
-<!-- Thông báo thanh toán đơn hàng -->
-
-<div class="success-card">
-    <div class="success-icon">
-        🎀
-    </div>
-    <h3 class="fw-bold text-success mb-2">Thanh toán thành công!</h3>
-    <p class="text-muted mb-4">
-        Cảm ơn bạn đã mua hàng. Đơn hàng của bạn đã được xác nhận và sẽ sớm được xử lý.
-    </p>
-    <div class="mt-4">
-        <a href="@Url.Action("Index","Sach")" class="btn btn-main me-2">Quay lại trang chủ</a>
-        <a href="@Url.Action("Index","DatHang")" class="btn btn-outline-secondary">Xem đơn hàng</a>
+<div class="success-wrapper">
+    <div class="success-card text-center p-5">
+        <div class="success-icon mb-3 animate-pop">
+            🎉
+        </div>
+        <h3 class="fw-bold text-success mb-3">Thanh toán thành công!</h3>
+        <p class="text-muted mb-4">
+            Cảm ơn bạn đã mua hàng. Đơn hàng của bạn đã được xác nhận và sẽ sớm được xử lý.
+        </p>
+        <div>
+            <a href="@Url.Action("Index","Sach")" class="btn btn-success me-2 px-4">
+                <i class="bi bi-house-door"></i> Quay lại trang chủ
+            </a>
+            <a href="@Url.Action("Index","DatHang")" class="btn btn-outline-light px-4">
+                <i class="bi bi-box-seam"></i> Xem đơn hàng
+            </a>
+        </div>
     </div>
 </div>
 
-<!-- Thông báo thanh toán đơn hàng -->
+<style>
+    /* Đặt card ở giữa */
+    .success-wrapper {
+        min-height: calc(100vh - 120px); /* trừ phần header */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        /* đảm bảo card nằm giữa nội dung, không dính lề trái */
+        width: 100%;
+        text-align: center;
+    }
+
+    .success-card {
+        background: #0b1120;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+        max-width: 500px;
+        color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .success-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+        }
+
+    .success-icon {
+        font-size: 3rem;
+    }
+
+    @@keyframes pop {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        80% {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .animate-pop {
+        animation: pop 0.8s ease forwards;
+    }
+
+    .text-muted {
+        color: #cfd2e3 !important;
+    }
+
+    .btn-outline-light {
+        border-color: #cfd2e3;
+        color: #cfd2e3;
+    }
+
+        .btn-outline-light:hover {
+            background-color: #cfd2e3;
+            color: #0b1120;
+        }
+</style>
